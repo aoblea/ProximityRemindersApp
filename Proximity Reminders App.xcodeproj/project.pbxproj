@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		AE20BAA223B124700074DC42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20BAA123B124700074DC42 /* AppDelegate.swift */; };
 		AE20BAA423B124700074DC42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20BAA323B124700074DC42 /* SceneDelegate.swift */; };
-		AE20BAA623B124700074DC42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20BAA523B124700074DC42 /* ViewController.swift */; };
 		AE20BAA923B124700074DC42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE20BAA723B124700074DC42 /* Main.storyboard */; };
 		AE20BAAB23B124750074DC42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE20BAAA23B124750074DC42 /* Assets.xcassets */; };
 		AE20BAAE23B124750074DC42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE20BAAC23B124750074DC42 /* LaunchScreen.storyboard */; };
+		AE20BAB623B127990074DC42 /* RemindersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20BAB523B127990074DC42 /* RemindersListViewController.swift */; };
+		AE20FA1323B172A200ACDFD1 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20FA1223B172A200ACDFD1 /* AddReminderViewController.swift */; };
+		AE20FA1C23B1797800ACDFD1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20FA1B23B1797800ACDFD1 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AE20BA9E23B124700074DC42 /* Proximity Reminders App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proximity Reminders App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE20BAA123B124700074DC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE20BAA323B124700074DC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AE20BAA523B124700074DC42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AE20BAA823B124700074DC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE20BAAA23B124750074DC42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE20BAAD23B124750074DC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE20BAAF23B124750074DC42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE20BAB523B127990074DC42 /* RemindersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersListViewController.swift; sourceTree = "<group>"; };
+		AE20FA1223B172A200ACDFD1 /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
+		AE20FA1B23B1797800ACDFD1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,57 @@
 		AE20BAA023B124700074DC42 /* Proximity Reminders App */ = {
 			isa = PBXGroup;
 			children = (
-				AE20BAA123B124700074DC42 /* AppDelegate.swift */,
-				AE20BAA323B124700074DC42 /* SceneDelegate.swift */,
-				AE20BAA523B124700074DC42 /* ViewController.swift */,
-				AE20BAA723B124700074DC42 /* Main.storyboard */,
+				AE20FA1A23B1796100ACDFD1 /* Extension */,
+				AE20BABC23B12A9A0074DC42 /* Supporting Files */,
+				AE20BABB23B12A750074DC42 /* Model */,
+				AE20BABA23B12A730074DC42 /* View */,
+				AE20BAB923B12A6E0074DC42 /* Controller */,
 				AE20BAAA23B124750074DC42 /* Assets.xcassets */,
-				AE20BAAC23B124750074DC42 /* LaunchScreen.storyboard */,
 				AE20BAAF23B124750074DC42 /* Info.plist */,
 			);
 			path = "Proximity Reminders App";
+			sourceTree = "<group>";
+		};
+		AE20BAB923B12A6E0074DC42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AE20BAB523B127990074DC42 /* RemindersListViewController.swift */,
+				AE20FA1223B172A200ACDFD1 /* AddReminderViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AE20BABA23B12A730074DC42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE20BAA723B124700074DC42 /* Main.storyboard */,
+				AE20BAAC23B124750074DC42 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE20BABB23B12A750074DC42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE20BABC23B12A9A0074DC42 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AE20BAA123B124700074DC42 /* AppDelegate.swift */,
+				AE20BAA323B124700074DC42 /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AE20FA1A23B1796100ACDFD1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AE20FA1B23B1797800ACDFD1 /* Color.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE20BAA623B124700074DC42 /* ViewController.swift in Sources */,
+				AE20FA1323B172A200ACDFD1 /* AddReminderViewController.swift in Sources */,
 				AE20BAA223B124700074DC42 /* AppDelegate.swift in Sources */,
+				AE20BAB623B127990074DC42 /* RemindersListViewController.swift in Sources */,
+				AE20FA1C23B1797800ACDFD1 /* Color.swift in Sources */,
 				AE20BAA423B124700074DC42 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
