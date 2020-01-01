@@ -25,6 +25,8 @@
 		AE5327DC23B50717008F7E36 /* ReminderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5327DB23B50717008F7E36 /* ReminderViewCell.swift */; };
 		AE5327DE23B68387008F7E36 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5327DD23B68387008F7E36 /* NotificationManager.swift */; };
 		AE5327EB23BAC427008F7E36 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5327EA23BAC427008F7E36 /* UIViewController+Extensions.swift */; };
+		AE5327EE23BB04AF008F7E36 /* RemindersListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5327ED23BB04AF008F7E36 /* RemindersListDelegate.swift */; };
+		AE5327F023BC34AC008F7E36 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5327EF23BC34AC008F7E36 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		AE5327DB23B50717008F7E36 /* ReminderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewCell.swift; sourceTree = "<group>"; };
 		AE5327DD23B68387008F7E36 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		AE5327EA23BAC427008F7E36 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		AE5327ED23BB04AF008F7E36 /* RemindersListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersListDelegate.swift; sourceTree = "<group>"; };
+		AE5327EF23BC34AC008F7E36 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 				AE20FA2123B1B58900ACDFD1 /* Reminder.xcdatamodeld */,
 				AE20FA2423B1B5C100ACDFD1 /* CoreDataStack.swift */,
 				AE5327DD23B68387008F7E36 /* NotificationManager.swift */,
+				AE5327EF23BC34AC008F7E36 /* LocationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 		AE5327EC23BB0433008F7E36 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				AE5327ED23BB04AF008F7E36 /* RemindersListDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -231,11 +237,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE20FA2523B1B5C100ACDFD1 /* CoreDataStack.swift in Sources */,
+				AE5327F023BC34AC008F7E36 /* LocationManager.swift in Sources */,
 				AE20FA1323B172A200ACDFD1 /* AddReminderViewController.swift in Sources */,
 				AE20BAA223B124700074DC42 /* AppDelegate.swift in Sources */,
 				AE5327D423B4069E008F7E36 /* ReminderFetchedResultsController.swift in Sources */,
 				AE20BAB623B127990074DC42 /* RemindersListViewController.swift in Sources */,
 				AE20FA1C23B1797800ACDFD1 /* Color.swift in Sources */,
+				AE5327EE23BB04AF008F7E36 /* RemindersListDelegate.swift in Sources */,
 				AE20BAA423B124700074DC42 /* SceneDelegate.swift in Sources */,
 				AE5327EB23BAC427008F7E36 /* UIViewController+Extensions.swift in Sources */,
 				AE5327DC23B50717008F7E36 /* ReminderViewCell.swift in Sources */,

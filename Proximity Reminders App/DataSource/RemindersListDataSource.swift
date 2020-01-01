@@ -52,7 +52,7 @@ class RemindersListDataSource: NSObject, UITableViewDataSource {
     
     let reminder = fetchedResultsController.object(at: indexPath)
     cell.configure(using: reminder)
-    
+
     return cell
   }
   

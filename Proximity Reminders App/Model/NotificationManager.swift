@@ -15,7 +15,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
   static let notificationManager = NotificationManager()
   private let center = UNUserNotificationCenter.current()
   
-  // TODO: - present an alert to the user saying that notification won't work unless authorization has changed.
   private func requestAuthorization() {
     let options: UNAuthorizationOptions = [.alert, .sound, .badge]
     center.requestAuthorization(options: options) { (didAllow, error) in

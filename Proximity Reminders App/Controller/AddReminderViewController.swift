@@ -17,38 +17,40 @@ class AddReminderViewController: UITableViewController {
   
   @IBOutlet weak var titleTextField: UITextField!
   @IBOutlet weak var subTextField: UITextField!
-  @IBOutlet weak var setLocationButton: UIButton!
+  @IBOutlet weak var setLocationButton: UIButton! {
+    didSet {
+      self.setLocationButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    }
+  }
   @IBOutlet weak var alertLabel: UILabel!
   @IBOutlet weak var optionControl: UISegmentedControl!
   @IBOutlet weak var mapView: MKMapView!
   
   // MARK: - Properties
   
-  var context: NSManagedObjectContext! // passed context from reminderslist segue
-  var reminder: Reminder? // for editing a selected row from reminder list
+  var context: NSManagedObjectContext!
+  var reminder: Reminder? // for editing a selected row from reminder list vc
   var isRepeating: Bool? {
     didSet {
       self.isRepeating = true
     }
   }
   
-  // will be filled in by search results vc and be used in saving process
+  // Temporary values to be filled in by search results vc and will be used in the saving process
   var address: String?
   var latitude: Double?
   var longitude: Double?
   var isArriving: Bool?
   
-  private let locationManager = CLLocationManager()
+  private let locationManager = LocationManager()
   private let notificationManager = NotificationManager()
   
   // MARK: - Viewwillappear
   
   override func viewWillAppear(_ animated: Bool) {
-    // Request core location
-    if CLLocationManager.authorizationStatus() == .notDetermined {
-      // request always in order for notifications to work at the background
-      locationManager.requestAlwaysAuthorization()
-    }
+    super.viewWillAppear(animated)
+    
+    locationManager.requestAuthorization()
   }
   
   // MARK: - Viewdidload
@@ -72,8 +74,25 @@ class AddReminderViewController: UITableViewController {
       self.latitude = reminder.latitude
       self.longitude = reminder.longitude
     
-      // TODO: load up mapview here
+      loadMapView(using: reminder)
     }
+  }
+  
+  func loadMapView(using reminder: Reminder) {
+    let radius: CLLocationDistance = 200
+    let coordinate = CLLocationCoordinate2D(latitude: reminder.latitude, longitude: reminder.longitude)
+    let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: radius, longitudinalMeters: radius)
+    self.mapView.setRegion(region, animated: true)
+    
+    let annotation = MKPointAnnotation()
+    annotation.title = reminder.address
+    annotation.coordinate = coordinate
+    self.mapView.addAnnotation(annotation)
+    
+    // Create a circle overlay used to show area for geofencing
+    let circleRadius: CLLocationDistance = 50
+    let circle = MKCircle(center: coordinate, radius: circleRadius)
+    self.mapView.addOverlay(circle)
   }
   
   func setupUI() {
@@ -89,8 +108,6 @@ class AddReminderViewController: UITableViewController {
   }
 
   @IBAction func saveReminder(_ sender: UIBarButtonItem) {
-    print("save pressed")
-    
     guard let title = titleTextField.text, let subtitle = subTextField.text else { return presentAlert(title: "Title/subtitle is missing.", message: "Please fill in required fields.") } // return error if anything is nil
     
     if self.optionControl.selectedSegmentIndex == 0 {
@@ -114,7 +131,7 @@ class AddReminderViewController: UITableViewController {
         updatedReminder.longitude = longitude
         
         notificationManager.removeNotification(using: self.reminder!) // deletes old notification settings
-        notificationManager.scheduleNotification(using: updatedReminder) // create a new notification
+        notificationManager.scheduleNotification(using: updatedReminder) // updates notification if any changes occurred
         context.saveChanges()
         navigationController?.popToRootViewController(animated: true)
       }
@@ -181,25 +198,30 @@ extension AddReminderViewController: SearchResultsDelegate {
     self.setLocationButton.setTitle(location.placemark.title, for: .normal) // change button title to location's address
     
     // setup mapview here using the details that were passed on by searchresultscontroller
+    mapView.removeAnnotations(self.mapView.annotations) // refreshes annotations
+    setupMapView(using: location)
+  }
+  
+  func setupMapView(using item: MKMapItem) {
     let radius: CLLocationDistance = 200
-    let region = MKCoordinateRegion(center: location.placemark.coordinate, latitudinalMeters: radius, longitudinalMeters: radius)
+    let region = MKCoordinateRegion(center: item.placemark.coordinate, latitudinalMeters: radius, longitudinalMeters: radius)
     self.mapView.setRegion(region, animated: true)
     
-    mapView.removeAnnotations(self.mapView.annotations) // refreshes annotations
     let annotation = MKPointAnnotation()
-    annotation.title = location.placemark.name
-    annotation.coordinate = location.placemark.coordinate
-    mapView.addAnnotation(annotation)
+    annotation.title = item.placemark.name
+    annotation.coordinate = item.placemark.coordinate
+    self.mapView.addAnnotation(annotation)
     
     // Create a circle overlay used to show area for geofencing
     let circleRadius: CLLocationDistance = 50
-    let circle = MKCircle(center: location.placemark.coordinate, radius: circleRadius)
-    mapView.addOverlay(circle)
+    let circle = MKCircle(center: item.placemark.coordinate, radius: circleRadius)
+    self.mapView.addOverlay(circle)
   }
   
 }
 
 // MARK: - Mkmapviewdelegate methods
+
 extension AddReminderViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
     // renders a filled colored circle overlay

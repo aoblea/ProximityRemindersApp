@@ -17,7 +17,6 @@ protocol SearchResultsDelegate: class {
 
 /// Search places using keyword search results
 class SearchResultsViewController: UIViewController {
-
   // MARK: - IBOutlets
   
   @IBOutlet weak var resultsTableView: UITableView!
@@ -38,7 +37,7 @@ class SearchResultsViewController: UIViewController {
     }
   }
   
-  var reminder: Reminder? // for populating information if we are editing mode
+  var reminder: Reminder? // for populating information if we are in editing mode
   weak var delegate: SearchResultsDelegate?
   
   // MARK: - Viewdidload
@@ -92,10 +91,10 @@ class SearchResultsViewController: UIViewController {
     
     self.navigationController?.popViewController(animated: true)
   }
-
 }
 
 // MARK: - Search results/bar methods
+
 extension SearchResultsViewController: UISearchResultsUpdating, UISearchBarDelegate {
   func updateSearchResults(for searchController: UISearchController) {
     guard let searchText = searchController.searchBar.text else { return }
@@ -136,6 +135,7 @@ extension SearchResultsViewController: UISearchResultsUpdating, UISearchBarDeleg
 }
 
 // MARK: - Table view data source and delegate methods
+
 extension SearchResultsViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     filteredResults.count
@@ -170,6 +170,7 @@ extension SearchResultsViewController: UITableViewDataSource, UITableViewDelegat
 }
 
 // MARK: - MKMapView delegate methods
+
 extension SearchResultsViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
     // renders a filled colored circle overlay
